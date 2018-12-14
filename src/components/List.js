@@ -10,23 +10,12 @@ export default class List extends PureComponent {
             id: string,
             title: string,
             url: string,
-            tags: arrayOf(string),
+            tags: string,
         })),
     };
 
     static defaultProps = {
-        items: [
-            {
-                id: '1',
-                title: 'Video 1',
-                url: 'https://youtu.be/9FmXNWq3EZI',
-            },
-            {
-                id: '2',
-                title: 'Video 2',
-                url: 'https://youtu.be/OiXd9vZb1Lc',
-            }
-        ],
+        items: [],
     };
 
     render() {
