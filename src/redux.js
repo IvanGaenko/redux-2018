@@ -1,5 +1,7 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import logger from 'redux-logger'
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const createId = () => Math.random();
 
 const books = (state = [], action) => {
@@ -59,11 +61,16 @@ const readers = (state = [], action) => {
 }
 
 const reducer = combineReducers({
-  books,
-  readers
+  books: books,
+  readers: readers
 })
 
-const store = createStore(reducer);
+const initialState = {
+  books: [],
+  readers: [],
+}
+
+const store = createStore(reducer, initialState, composeEnhancers(applyMiddleware(logger)));
 
 const addBook = (bookName) => ({
   type: 'ADD_BOOK',
@@ -99,6 +106,7 @@ store.subscribe(() => {
   console.log('From subscribe', store.getState());
 });
 
+console.log('---------------books');
 store.dispatch(addBook('Book 1'));
 store.dispatch(addBook('Book 2'));
 store.dispatch(addBook('Book 3'));
@@ -106,6 +114,7 @@ store.dispatch(addBook('Book 4'));
 store.dispatch(removeBook(store.getState().books[0].id));
 store.dispatch(updateBook(store.getState().books[0].id, 'Updated Book Title'));
 
+console.log('---------------readers');
 store.dispatch(addReader('Reader 1'));
 store.dispatch(addReader('Reader 2'));
 store.dispatch(addReader('Reader 3'));
