@@ -5,10 +5,14 @@ import './App.css';
 import Search from './containers/Search';
 import Form from './containers/Form';
 import List from './containers/List';
-
 import storeCreator from './store';
+import { localState, saveState } from "./localStorage";
 
-const store = storeCreator();
+let store = storeCreator(localState());
+
+store.subscribe(() => {
+    saveState(store.getState());
+});
 
 class App extends Component {
   render() {
