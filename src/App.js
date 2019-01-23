@@ -14,6 +14,7 @@ store.subscribe(() => {
     saveState(store.getState());
 });
 
+const store = storeCreator();
 class App extends Component {
   render() {
     return (

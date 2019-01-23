@@ -1,18 +1,21 @@
 const UPDATE_SEARCH = 'UPDATE_SEARCH';
 
-export default function searchReducer(state = [], action) {
+const INIT = {};
+
+export default function searchReducer(state = INIT, action) {
   const { type, payload } = action;
 
-  switch(type) {
-    case UPDATE_SEARCH:
-      const { searchField, value } = payload;
-      return {
-        ...state,
-        [searchField]: value,
-      };
+  switch (type) {
 
+    case UPDATE_SEARCH:
+    const { searchField, value} = payload;
+
+    return {
+      ...state,
+      [searchField]: value,
+    };
     default:
-      return state;
+    return state;
   }
 }
 

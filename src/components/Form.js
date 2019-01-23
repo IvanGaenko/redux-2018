@@ -1,11 +1,15 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import { func } from 'prop-types';
 
-const initialValues = { title: '', url: '', tags: '' };
+const initialValues = {
+  title: '',
+  url: '',
+  tags: ''
+};
 
 export default class Form extends PureComponent {
   static propTypes = {
-    add: func.isRequired,
+    addVid: func.isRequired,
   };
 
   state = initialValues;
